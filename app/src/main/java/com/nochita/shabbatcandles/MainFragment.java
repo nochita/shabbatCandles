@@ -1,12 +1,7 @@
 package com.nochita.shabbatcandles;
 
-import android.content.pm.PackageManager;
-import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
@@ -15,11 +10,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationServices;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,14 +25,12 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 
-public class MainFragment extends Fragment implements
-        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener{
+public class MainFragment extends Fragment {
 
     public static final String TAG = "light candle";
     private TextView lightCandleForTextView;
     private TextView timeTextView;
     private WeakReference<MyAsyncTask> asyncTaskWeakRef;
-    private GoogleApiClient mGoogleApiClient;
 
     public MainFragment() {
         // Required empty public constructor
@@ -61,14 +49,6 @@ public class MainFragment extends Fragment implements
         setRetainInstance(true);
         startNewAsyncTask();
 
-        // Create an instance of GoogleAPIClient.
-        if (mGoogleApiClient == null) {
-            mGoogleApiClient = new GoogleApiClient.Builder(getActivity())
-                    .addConnectionCallbacks(this)
-                    .addOnConnectionFailedListener(this)
-                    .addApi(LocationServices.API)
-                    .build();
-        }
     }
 
     @Override
@@ -108,50 +88,6 @@ public class MainFragment extends Fragment implements
         timeTextView = (TextView) view.findViewById(R.id.main_time);
 
         return view;
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        mGoogleApiClient.connect();
-    }
-
-    @Override
-    public void onStop() {
-        mGoogleApiClient.disconnect();
-        super.onStop();
-    }
-
-    @Override
-    public void onConnected(@Nullable Bundle bundle) {
-        if (ActivityCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        Location mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
-                mGoogleApiClient);
-        if (mLastLocation != null) {
-            Log.d(TAG, mLastLocation.getLatitude() + "");
-            Log.d(TAG, mLastLocation.getLongitude() + "");
-        }
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
-        Log.d(TAG, "onConnectionSuspended");
-    }
-
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-        Log.d(TAG, "onConnectionFailed");
-        Toast.makeText(getActivity(), R.string.check_google_play_services, Toast.LENGTH_LONG).show();
     }
 
     private static class MyAsyncTask extends AsyncTask<Void, Void, Void> {
@@ -229,7 +165,7 @@ public class MainFragment extends Fragment implements
 
                 SimpleDateFormat dfDay = new SimpleDateFormat("MMMM d, yyyy");
                 String day = dfDay.format(calLightCandle.getTime());
-                String text = this.fragmentWeakRef.get().getString(R.string.light_candle_for, day);
+                String text = this.fragmentWeakRef.get().getString(R.string.light_candle, day);
                 this.fragmentWeakRef.get().lightCandleForTextView.setText(text);
             }
         }

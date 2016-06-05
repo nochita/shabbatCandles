@@ -1,15 +1,14 @@
 <resources>
     <string name="app_name">Shabbat Candles</string>
 
-    <string name="light_candle">Encendido de velas</string>
-    <string name="light_candle_for">Encendido de velas para %1s</string>
-    <string name="braja_fonetic">Barúj atá A-do-nái\nE-lo-héinu mélej haolám\nashér kidshánu bemitzvotáv vetzivánu\nlehadlik ner shel Shabat Kodesh.</string>
-    <string name="braja_translation">Bendito eres Tú, Di-s, nuestro Señor,\nRey del Universo, Quien nos santificó\ncon Sus preceptos y nos ordenó encender\nlas velas del sagrado Shabat.</string>
+    <string name="light_candle">Shabbat Candle-lighting for Buenos Aires for %1s</string>
+    <string name="braja_fonetic">Baruch a-ta A-do-nay Elo-hei-nu me-lech ha-o-lam\na-sher ki-di-sha-nu bi-mitz-vo-tav vi-tzi-va-noo li-had-leek ner shel Sha-bat ko-desh.</string>
+    <string name="braja_translation">Blessed are you, L‑rd our G‑d, King of the universe,\nwho has sanctified us with His commandments, and commanded us to kindle the light of the Holy Shabbat.</string>
 
     <string name="settings">Settings</string>
-    <string name="about">Acerca de</string>
-    <string name="about_message">Esta aplicacion usa la api de http://sunrise-sunset.org/api</string>
+    <string name="about">About</string>
+    <string name="about_message">This application uses the API from http://sunrise-sunset.org/api to retrieve the sunset time.
+     This time minus 3 hours (time zone) and then minus 18 minutes.</string>
     <string name="title_activity_settings">Settings</string>
 
-    <string name="check_google_play_services">Chequee el estado de los Google Play Services</string>
 </resources>
