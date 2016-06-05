@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Velas de Shabat</string>
+
+    <string name="light_candle">Encendido de velas para %1s</string>
+    <string name="braja_fonetic">Barúj atá A-do-nái\nE-lo-héinu mélej haolám\nashér kidshánu bemitzvotáv vetzivánu\nlehadlik ner shel Shabat Kodesh.</string>
+    <string name="braja_translation">Bendito eres Tú, Di-s, nuestro Señor,\nRey del Universo, Quien nos santificó\ncon Sus preceptos y nos ordenó encender\nlas velas del sagrado Shabat.</string>
+</resources>
